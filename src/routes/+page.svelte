@@ -7,7 +7,8 @@
 
   // 取得したイベントをかなりランダムに並べ替える
   const sorted = (events: Nostr.Event[]) => {
-    return [...events].sort(() => Math.random() - 0.5);
+    // return [...events].sort(() => Math.random() - 0.5);
+    return [...events].sort((a, b) => b.created_at - a.created_at);
   };
 
   let postContent = "";
@@ -46,18 +47,17 @@
     <div slot="error" let:error class="container">
       <p class="center">{error}</p>
     </div>
-    <main>
-      <div class="p-2 text-end">
+    <main class="container">
+      <div class="pt-3 text-end">
         <div class="form mb-2">
           <textarea
             bind:value={postContent}
             on:keydown={submitKeydown}
-            placeholder="最近どう？"
             class="form-control"
           ></textarea>
         </div>
-        <button on:click={submit} disabled={submitDisabled} class="btn btn-primary"
-          >書き込む</button
+        <button on:click={submit} disabled={submitDisabled} class="btn btn-primary btn-sm"
+          >post</button
         >
       </div>
       <section>
