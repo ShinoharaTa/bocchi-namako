@@ -16,7 +16,7 @@
       <!-- <div class="time">{parseCreated(event.created_at)}</div> -->
       <div class="content">{parsed.text_without_urls}</div>
       {#each parsed.other_urls as url}
-        <div>
+        <div class="content">
           <a href={url} target="_blank">
             {url}
           </a>
@@ -36,5 +36,6 @@
   .content {
     white-space: pre-wrap;
     word-wrap: break-word;
+    word-break: break-word; /* break-allよりもbreak-wordの方が見た目が自然 */
   }
 </style>
